@@ -3,14 +3,24 @@
 // Feb 14, 2019
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// - Add music, try to make a mouse cursor"
 
+
+let magicHat; 
+let scaleImage; 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(900, 700);
+  imageMode(CENTER); 
+  scaleImage = 0.1;
 }
 
 function draw() {
   background(220);
-  ellipse(mouseX, mouseY, 50, 50);
+  image(magicHat, mouseX, mouseY, magicHat.width * scaleImage, magicHat.height * scaleImage);
+
+}
+
+function preload() { 
+  magicHat = loadImage("assets/Topper-Hat-Download-PNG.png");
 }
