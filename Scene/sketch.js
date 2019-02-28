@@ -6,25 +6,35 @@
 // - Add music, try to make a mouse cursor"
 
 
-let magicHat; 
-let bgImage
-let scaleImage; 
+let bgImage;
+let imgX; 
+let imgY; 
+let scaleHat; 
+let scaleImg;
+let HatImg;
+let appleImg;
+let blastImg;
+let grenadeImg;
 
 function setup() {
-  createCanvas(900, 700);
-  bgImage = loadImage("assets/forest-game-background-2d-application-vector-9827363.jpg")
-  imageMode(CENTER); 
-  scaleImage = 0.1;
+  bgImage = loadImage("assets/forestbackground.jpg")
+  createCanvas(900, 700); 
+  scaleHat = 0.09;
+  scaleFru = 0.02;
 }
 
 function draw() {
-  background(220);
-
-  image(magicHat, mouseX, mouseY, magicHat.width * scaleImage, magicHat.height * scaleImage);
- 
+  background(bgImage);
+  image(HatImg, 350, 520, HatImg.width * scaleHat, HatImg.height * scaleHat);
+  
+  
+  
+  image(appleImg, 0, 0, appleImg.width * scaleFru, appleImg.height * scaleFru);
+  image(grenadeImg, 0, 0, grenadeImg.width * scaleImg, grenadeImg.height * scaleImg);
 }
 
 function preload() { 
-  magicHat = loadImage("assets/Topper-Hat-Download-PNG.png");
-  
+  HatImg = loadImage("assets/hat.png");
+  appleImg = loadImage("assets/apple.png");
+  grenadeImg = loadImage("assets/grenade.png");
 }
