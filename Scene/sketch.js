@@ -7,10 +7,10 @@
 
 
 let bgImage;
-let imgX; 
-let imgY; 
+let posX; 
+let posY; 
 let scaleHat; 
-let scaleImg;
+let scaleFruit;
 let HatImg;
 let appleImg;
 let blastImg;
@@ -20,21 +20,41 @@ function setup() {
   bgImage = loadImage("assets/forestbackground.jpg")
   createCanvas(900, 700); 
   scaleHat = 0.09;
-  scaleFru = 0.02;
+  scaleFruit = 0.02;
+  posX = 350;
+  posY = 520;
 }
 
 function draw() {
   background(bgImage);
-  image(HatImg, 350, 520, HatImg.width * scaleHat, HatImg.height * scaleHat);
+  mouseCursor()
+  image(HatImg, posX, posY, HatImg.width * scaleHat, HatImg.height * scaleHat);
+  if (keyIsDown(LEFT_ARROW)) {
+    posX -= 5; 
+  }
+  if (keyIsDown(RIGHT_ARROW)) { 
+    posX += 5;
+  }
   
-  
-  
-  image(appleImg, 0, 0, appleImg.width * scaleFru, appleImg.height * scaleFru);
-  image(grenadeImg, 0, 0, grenadeImg.width * scaleImg, grenadeImg.height * scaleImg);
+  image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
+  image(grenadeImg, 0, 0, grenadeImg.width * scaleFruit, grenadeImg.height * scaleFruit);
 }
 
 function preload() { 
   HatImg = loadImage("assets/hat.png");
   appleImg = loadImage("assets/apple.png");
   grenadeImg = loadImage("assets/grenade.png");
+}
+
+function mouseCursor() {
+  fill(51,204,204); 
+  stroke("grey");
+  strokeWeight(6);
+  beginShape();
+  vertex(30, 50);
+  vertex(30, 5);
+  vertex(65, 35);
+  vertex(45, 35);
+  vertex(30, 50);
+  endShape();
 }
