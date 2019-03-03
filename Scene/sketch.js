@@ -38,7 +38,7 @@ function draw() {
     posX += 5;
   }
   
-  image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
+  // image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
 }
 
 function preload() { 
@@ -51,10 +51,10 @@ function createCursor() {
   stroke("grey");
   strokeWeight(6);
   beginShape();
-  vertex(30, 50);
-  vertex(30, 5);
-  vertex(65, 35);
-  vertex(45, 35);
-  vertex(30, 50);
+  vertex(-5 + mouseX, 40 + mouseY);
+  vertex(-5 + mouseX, -5 + mouseY);
+  vertex(30 + mouseX, 25 + mouseY);
+  vertex(10 + mouseX, 25 + mouseY);
+  vertex(-5 + mouseX, 40 + mouseY);
   endShape();
 }
