@@ -5,7 +5,6 @@
 // Extra for Experts:
 // Add music, try to make a mouse cursor"
 
-
 let bgImage;
 let posX; 
 let posY; 
@@ -26,20 +25,34 @@ function setup() {
 
 function draw() {
   background(bgImage);
+  displayHat();
+  moveHat();
   createCursor();
-  
+} 
 
-
+function displayHat() { 
   image(HatImg, posX, posY, HatImg.width * scaleHat, HatImg.height * scaleHat);
+} 
+
+function moveHat() {
   if (keyIsDown(LEFT_ARROW)) {
     posX -= 5; 
   }
   if (keyIsDown(RIGHT_ARROW)) { 
     posX += 5;
   }
+}
+function mouseDragged() { 
+  if (mouseX < posX) { 
+    posX -= Math.abs(mouseX - posX); 
+  }
+  else if (mouseX - posX) {
+    posX += Math.abs(mouseX - posX);
+  }
+}
   
   // image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
-}
+
 
 function preload() { 
   HatImg = loadImage("assets/hat.png");
