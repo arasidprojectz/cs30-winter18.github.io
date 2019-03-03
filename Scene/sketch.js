@@ -3,7 +3,7 @@
 // Feb 14, 2019
 //
 // Extra for Experts:
-// - Add music, try to make a mouse cursor"
+// Add music, try to make a mouse cursor"
 
 
 let bgImage;
@@ -13,8 +13,7 @@ let scaleHat;
 let scaleFruit;
 let HatImg;
 let appleImg;
-let blastImg;
-let grenadeImg;
+
 
 function setup() {
   bgImage = loadImage("assets/forestbackground.jpg")
@@ -27,7 +26,10 @@ function setup() {
 
 function draw() {
   background(bgImage);
-  mouseCursor()
+  createCursor();
+  
+
+
   image(HatImg, posX, posY, HatImg.width * scaleHat, HatImg.height * scaleHat);
   if (keyIsDown(LEFT_ARROW)) {
     posX -= 5; 
@@ -37,16 +39,14 @@ function draw() {
   }
   
   image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
-  image(grenadeImg, 0, 0, grenadeImg.width * scaleFruit, grenadeImg.height * scaleFruit);
 }
 
 function preload() { 
   HatImg = loadImage("assets/hat.png");
   appleImg = loadImage("assets/apple.png");
-  grenadeImg = loadImage("assets/grenade.png");
 }
 
-function mouseCursor() {
+function createCursor() {
   fill(51,204,204); 
   stroke("grey");
   strokeWeight(6);
