@@ -12,6 +12,7 @@ let scaleHat;
 let scaleFruit;
 let HatImg;
 let appleImg;
+let imgY = 0;
 
 
 function setup() {
@@ -28,12 +29,16 @@ function draw() {
   displayHat();
   moveHat();
   createCursor();
+  // displayFruits();
+  // moveFruit();
 } 
 
+//Display the hat on the screen
 function displayHat() { 
   image(HatImg, posX, posY, HatImg.width * scaleHat, HatImg.height * scaleHat);
 } 
 
+// Move hat wiht key control
 function moveHat() {
   if (keyIsDown(LEFT_ARROW)) {
     posX -= 5; 
@@ -42,17 +47,26 @@ function moveHat() {
     posX += 5;
   }
 }
-function mouseDragged() { 
-  if (mouseX < posX) { 
-    posX -= Math.abs(mouseX - posX); 
-  }
-  else if (mouseX - posX) {
-    posX += Math.abs(mouseX - posX);
-  }
-}
-  
-  // image(appleImg, 0, 0, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
 
+// Make the coustum mouse cursor move with mouse control
+// function mouseDragged() { 
+//   if (mouseX < posX) { 
+//     posX -= Math.abs(mouseX - posX); 
+//   }
+//   else if (mouseX - posX) {
+//     posX += Math.abs(mouseX - posX);
+//   }
+// }
+
+// Display the fruits images
+function displayFruits() {
+  image(appleImg, 0, imgY, appleImg.width * scaleFruit, appleImg.height * scaleFruit);
+}
+
+// Make fruits fall from the top of the screen
+function moveFruit() {
+  imgY += 1;
+}
 
 function preload() { 
   HatImg = loadImage("assets/hat.png");
