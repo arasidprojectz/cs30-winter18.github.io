@@ -49,7 +49,7 @@ function draw() {
   moveHat();
   createCursor();
   displayFruits();
-  // moveFruit();
+  moveFruit();
 } 
 
 // Resizing the window
@@ -72,15 +72,15 @@ function moveHat() {
   }
 }
 
-// Make the coustum mouse cursor move with mouse control
-// function mouseDragged() { 
-//   if (mouseX < posX) { 
-//     posX -= Math.abs(mouseX - posX); 
-//   }
-//   else if (mouseX - posX) {
-//     posX += Math.abs(mouseX - posX);
-//   }
-// }
+//Make the coustum mouse cursor move with mouse control
+function mouseDragged() { 
+  if (mouseX < posX) { 
+    posX -= Math.abs(mouseX - posX); 
+  }
+  else if (mouseX - posX) {
+    posX += Math.abs(mouseX - posX);
+  }
+}
 
 // Display the fruits images
 function displayFruits() {
