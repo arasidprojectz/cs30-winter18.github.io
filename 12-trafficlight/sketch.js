@@ -7,16 +7,68 @@
 // function at https://p5js.org/reference/
 
 let state;
+let greenLightDuration; 
+let yellowLightDuration;
+let redLightDuration;
+let timeOfLastLightSwitch;
+
 
 function setup() {
   createCanvas(600, 600);
+  state = 1;
+  greenLightDuration = 5000;
+  yellowLightDuration = 1500;
+  redLightDuration = 3000;
+  timeOfLastLightSwitch = 0;
 }
 
 function draw() {
   background(255);
   drawOutlineOfLights();
+  checkState();
+  displayTheCorrectLight();
+}
+function showGreenLight() {
+  fill(0, 225, 0);
+  ellipse(width/2, height/2 + 65, 50, 50); //bottom
 }
 
+function showYellowLight() {
+  fill(225, 225, 0);
+  ellipse(width/2, height/2, 50, 50); //middle
+}
+
+function showRedLight() {
+  fill(255, 0, 0);
+  ellipse(width/2, height/2 - 65, 50, 50); //top
+}
+
+function checkState() {
+  if (state === 1 && millis() > timeOfLastLightSwitch + greenLightDuration){
+    state = 2;
+    timeOfLastLightSwitch = millis();
+  }
+  else if (state === 2 && millis() > timeOfLastLightSwitch + yellowLightDuration){
+    state = 3;
+    timeOfLastLightSwitch = millis();
+  }
+  else if (state === 3 && millis() > timeOfLastLightSwitch + redLightDuration){
+    state = 1;
+    timeOfLastLightSwitch = millis();
+  }
+}
+
+function displayTheCorrectLight() {
+  if (state === 1) {
+    showGreenLight();
+  }
+  if (state === 2) {
+    showYellowLight();
+  }
+  if (state === 3) {
+    showRedLight();
+  }
+}
 function drawOutlineOfLights() {
   //box
   rectMode(CENTER);
@@ -28,20 +80,4 @@ function drawOutlineOfLights() {
   ellipse(width/2, height/2 - 65, 50, 50); //top
   ellipse(width/2, height/2, 50, 50); //middle
   ellipse(width/2, height/2 + 65, 50, 50); //bottom
-}
-
-function lightStates() { 
-  if (state === 1); { 
-    fill(255); // top light-red
-    ellipse(width/2, height/2 - 65, 50, 50); //top
-
-  else if (state === 2); {
-    fill(255); // middle light-amber
-    ellipse(width/2, height/2, 50, 50); //middle
-  }
-  else if(state === 3); {
-    state = 1;
-    fill(255);// bottom light-green
-    ellipse(width/2, height/2 + 65, 50, 50); //bottom
-  }
 }
