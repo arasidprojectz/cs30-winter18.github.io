@@ -49,7 +49,7 @@ function draw() {
   moveHat();
   createCursor();
   displayFruits();
-  moveFruit();
+  // moveFruit();
 } 
 
 // Resizing the window
@@ -72,6 +72,9 @@ function moveHat() {
   }
 }
 
+function interaactingObject() {
+
+}
 //Make the coustum mouse cursor move with mouse control
 function mouseDragged() { 
   if (mouseX < posX) { 
