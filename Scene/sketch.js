@@ -6,6 +6,7 @@
 // Add music, try to make a mouse cursor"
 
 let bgImage;
+let HatImg;
 let appleImg;
 let bananaImg; 
 let strawberryImg;
@@ -19,13 +20,15 @@ let scaleStrawberry;
 let scaleBanana; 
 let scaleGrape;
 
-let posX; 
-let posY; 
-let HatImg;
-
-let imgY;
 let x;
 let y;
+let posX; 
+let posY; 
+let imgY;
+let distImg;
+
+
+
 
 
 function setup() {
