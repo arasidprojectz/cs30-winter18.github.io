@@ -40,7 +40,7 @@ function setup() {
   posX = 350;
   posY = 520;
   imgY = 0;
-  x = random(width);
+  x = random(0, 400);
 }
 
 function draw() {
@@ -49,7 +49,7 @@ function draw() {
   moveHat();
   createCursor();
   displayFruits();
-  // moveFruit();
+  moveFruit();
 } 
 
 // Resizing the window
@@ -87,21 +87,21 @@ function mouseDragged() {
 
 // Display the fruits images
 function displayFruits() {
-  for (let a = 0; a < 15; a++) {
+  for (let i = 0; i < 15; i++) {
     image(appleImg, x, imgY, appleImg.width * scaleApple, appleImg.height * scaleApple);
   }
-  for (let b = 0; b < 5; b++) {
+  for (let i = 0; i < 5; i++) {
     image(bananaImg, x, imgY, bananaImg.width * scaleBanana, bananaImg.height * scaleBanana);
   }
-  for (let s = 0; s < 20; s++) {
-    image(strawberryImg, x, imgY, strawberryImg.width * scaleStrawberry, strawberryImg.height * scaleStrawberry);
-  }
-  for (let p = 0; p < 25; p++) {
-    image(pineappleImg, x, imgY, pineappleImg.width * scalePineapple, pineappleImg.height * scalePineapple);
-  }
-  for (let g = 0; g < 25; g++) {
-    image(grapeImg, x, imgY, grapeImg.width * scaleGrape, grapeImg.height * scaleGrape);
-  }
+  // for (let i = 0; i < 20; i++) {
+  //   image(strawberryImg, x, imgY, strawberryImg.width * scaleStrawberry, strawberryImg.height * scaleStrawberry);
+  // }
+  // for (let i = 0; i < 25; i++) {
+  //   image(pineappleImg, x, imgY, pineappleImg.width * scalePineapple, pineappleImg.height * scalePineapple);
+  // }
+  // for (let i = 0; i < 25; i++) {
+  //   image(grapeImg, x, imgY, grapeImg.width * scaleGrape, grapeImg.height * scaleGrape);
+  // }
 }
 
 // Make fruits fall down randomly from the top of the screen
