@@ -26,8 +26,8 @@ function draw() {
   moveHat();
   createCursor();
   leftToRightBoundary();
-  // displayFruits();
-  // moveFruit();
+  displayFruits();
+  moveFruit();
 } 
 
 // Resizing the window
