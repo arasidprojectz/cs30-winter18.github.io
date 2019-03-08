@@ -25,12 +25,11 @@ function draw() {
   displayHat();
   moveHat();
   createCursor();
-  leftToRightBoundary();
-  displayFruits();
-  moveFruit();
+  // displayFruits();
+  // moveFruit();
 } 
 
-// Resizing the window
+//Resizing the window
 // function windowResized() {
 //   resizeCanvas(windowWidth, windowHeight); 
 
@@ -42,23 +41,15 @@ function displayHat() {
 
 // Move hat wiht key control
 function moveHat() {
-  if (keyIsDown(LEFT_ARROW)) {
+  if (keyIsDown(LEFT_ARROW) && posX > 0) {
     posX -= xSpeed; 
   }
-  if (keyIsDown(RIGHT_ARROW)) { 
+  if (keyIsDown(RIGHT_ARROW) && posX < 794) { 
     posX += xSpeed;
   }
 }
 
-function leftToRightBoundary() {
-  if (posX + imgWidth === width || posX === 0) {
-    xSpeed = xSpeed * -1;
-  } 
-}
 
-function interaactingObject() {
-
-}
 //Make the coustum mouse cursor move with mouse control
 function mouseDragged() { 
   if (mouseX < posX) { 
