@@ -3,7 +3,7 @@
 // Feb 14, 2019
 //
 // Extra for Experts:
-// Add music, try to make a mouse cursor"
+// Add music, try to make a mouse cursor
 
 let bgImage, HatImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg;
 let scaleHat, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
@@ -25,8 +25,8 @@ function draw() {
   displayHat();
   moveHat();
   createCursor();
-  // displayFruits();
-  // moveFruit();
+  displayFruits();
+  moveFruit();
 } 
 
 //Resizing the window
@@ -48,7 +48,6 @@ function moveHat() {
     posX += xSpeed;
   }
 }
-
 
 //Make the coustum mouse cursor move with mouse control
 function mouseDragged() { 
