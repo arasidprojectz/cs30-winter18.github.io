@@ -36,7 +36,7 @@ function draw() {
 
 //Display the hat on the screen
 function displayHat() { 
-  image(HatImg, posX, posY, HatImg.width * scaleHat, HatImg.height * scaleHat);
+  image(HatImg, posX, posY, 100, 80);
 } 
 
 // Move hat wiht key control
@@ -94,10 +94,10 @@ function createCursor() {
   stroke("grey");
   strokeWeight(6);
   beginShape();
-  vertex(-5 + mouseX, 40 + mouseY);
-  vertex(-5 + mouseX, -5 + mouseY);
-  vertex(30 + mouseX, 25 + mouseY);
-  vertex(10 + mouseX, 25 + mouseY);
-  vertex(-5 + mouseX, 40 + mouseY);
+  vertex(0 + mouseX, 40 + mouseY);
+  vertex(0 + mouseX, -5 + mouseY);
+  vertex(34 + mouseX, 25 + mouseY);
+  vertex(15 + mouseX, 25 + mouseY);
+  vertex(0 + mouseX, 40 + mouseY);
   endShape();
 }
