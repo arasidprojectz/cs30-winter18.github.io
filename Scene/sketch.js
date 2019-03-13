@@ -6,18 +6,18 @@
 // Add music, try to make a mouse cursor
 
 let bgImage, HatImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg;
-let scaleHat, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
+let hatWidth, hatHeight, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
 let appleX, bananaX, pineappleX, grapeX, strawberryX; 
-let posX, posY, imgY, imgWidth, xSpeed;
+let posX, posY, cursorX, cursorY, imgY, imgWidth, xSpeed;
 
 function setup() {
   bgImage = loadImage("assets/forestbackground.jpg")
   createCanvas(900, 700); 
-  scaleHat = 0.09, scaleApple = 0.02, scaleBanana = 0.015;
+  hatWidth = 100, hatHeight = 100, scaleApple = 0.02, scaleBanana = 0.015;
   scaleGrape = 0.12, scalePineapple = 0.1, scaleStrawberry = 0.06;
   appleX = random(0, width), bananaX = random(0, width);
   pineappleX = random(0, width), grapeX = random(0, width), strawberryX = random(0, width);
-  posX = 350, posY = 520, imgY = 0, imgWidth = 100, xSpeed = 5;
+  posX = 350, posY = 520, cursorX = 100, cursorY = 100, imgY = 0, imgWidth = 100, xSpeed = 5;
 }
 
 function draw() {
@@ -29,15 +29,35 @@ function draw() {
   moveFruit();
 } 
 
-//Resizing the window
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight); 
+//Make the coustum mouse cursor move with mouse control
+function myMouseDragged() {
+  if (cursorX < posX || cursorX > posX + 100 || cursorY < posY || cursorY > posY + 100) {
+    cursorX += mouseX - cursorX;
+    cursorY += mouseY - cursorY;
+    return;
+  }
+  
+  cursorX += 0.1 * (mouseX - cursorX);
 
+  if (cursorX < posX) {
+    posX -= Math.abs(cursorX - posX) + 50;
+  } 
+  else if (cursorX > posX) {
+    posX += Math.abs(cursorX - posX) - 50;
+  }
+  
+  cursorX = posX + 50;
+  
+}
 
-//Display the hat on the screen
-function displayHat() { 
-  image(HatImg, posX, posY, 100, 80);
-} 
+function mouseMoved() {
+  cursorX = mouseX;
+  cursorY = mouseY;
+}
+
+function mouseDragged() {
+  myMouseDragged();
+}
 
 // Move hat wiht key control
 function moveHat() {
@@ -49,33 +69,29 @@ function moveHat() {
   }
 }
 
-//Make the coustum mouse cursor move with mouse control
-function mouseDragged() { 
-  if (mouseX < posX) { 
-    posX -= Math.abs(mouseX - posX); 
-  }
-  else if (mouseX - posX) {
-    posX += Math.abs(mouseX - posX);
-  }
-}
+//Display the hat on the screen
+function displayHat() { 
+  image(HatImg, posX, posY, hatWidth, hatHeight);
+} 
+
 
 // Display the fruits images
 function displayFruits() {
   for (let i = 0; i < 15; i++) {
     image(appleImg, appleX, imgY, appleImg.width * scaleApple, appleImg.height * scaleApple);
   }
-  for (let i = 0; i < 5; i++) {
-    image(bananaImg, bananaX, imgY, bananaImg.width * scaleBanana, bananaImg.height * scaleBanana);
-  }
-  for (let i = 0; i < 20; i++) {
-    image(strawberryImg, strawberryX, imgY, strawberryImg.width * scaleStrawberry, strawberryImg.height * scaleStrawberry);
-  }
-  for (let i = 0; i < 25; i++) {
-    image(pineappleImg, pineappleX, imgY, pineappleImg.width * scalePineapple, pineappleImg.height * scalePineapple);
-  }
-  for (let i = 0; i < 25; i++) {
-    image(grapeImg, grapeX, imgY, grapeImg.width * scaleGrape, grapeImg.height * scaleGrape);
-  }
+  // for (let i = 0; i < 5; i++) {
+  //   image(bananaImg, bananaX, imgY, bananaImg.width * scaleBanana, bananaImg.height * scaleBanana);
+  // }
+  // for (let i = 0; i < 20; i++) {
+  //   image(strawberryImg, strawberryX, imgY, strawberryImg.width * scaleStrawberry, strawberryImg.height * scaleStrawberry);
+  // }
+  // for (let i = 0; i < 25; i++) {
+  //   image(pineappleImg, pineappleX, imgY, pineappleImg.width * scalePineapple, pineappleImg.height * scalePineapple);
+  // }
+  // for (let i = 0; i < 25; i++) {
+  //   image(grapeImg, grapeX, imgY, grapeImg.width * scaleGrape, grapeImg.height * scaleGrape);
+  // }
 }
 
 // Make fruits fall down randomly from the top of the screen
