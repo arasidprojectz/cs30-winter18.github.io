@@ -5,15 +5,15 @@
 // Extra for Experts:
 // Add music, try to make a mouse cursor
 
-let bgImage, HatImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg;
-let hatWidth, hatHeight, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
+let bgImage, basketImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg;
+let basketWidth, basketHeight, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
 let appleX, bananaX, pineappleX, grapeX, strawberryX; 
 let posX, posY, cursorX, cursorY, imgY, imgWidth, xSpeed;
 
 function setup() {
-  bgImage = loadImage("assets/forestbackground.jpg")
+  bgImage = loadImage("assets/forestbackground.jpg");
   createCanvas(900, 700); 
-  hatWidth = 100, hatHeight = 100, scaleApple = 0.02, scaleBanana = 0.015;
+  basketWidth = 100, basketHeight = 100, scaleApple = 0.02, scaleBanana = 0.015;
   scaleGrape = 0.12, scalePineapple = 0.1, scaleStrawberry = 0.06;
   appleX = random(0, width), bananaX = random(0, width);
   pineappleX = random(0, width), grapeX = random(0, width), strawberryX = random(0, width);
@@ -71,7 +71,7 @@ function moveHat() {
 
 //Display the hat on the screen
 function displayHat() { 
-  image(HatImg, posX, posY, hatWidth, hatHeight);
+  image(basketImg, posX, posY, basketWidth, basketHeight);
 } 
 
 
@@ -100,7 +100,7 @@ function moveFruit() {
 }
 
 function preload() { 
-  HatImg = loadImage("assets/hat.png"), appleImg = loadImage("assets/appleclipart.png");
+  basketImg = loadImage("assets/basket-clipart.png "), appleImg = loadImage("assets/appleclipart.png");
   bananaImg = loadImage("assets/bananaclipart.png"), strawberryImg = loadImage("assets/strawberryclipart.png");
   pineappleImg = loadImage("assets/pineappleclipart.png"), grapeImg = loadImage("assets/grapeclipart.png");
 }
