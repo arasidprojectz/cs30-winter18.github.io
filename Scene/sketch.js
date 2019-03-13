@@ -9,6 +9,7 @@ let bgImage, basketImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeI
 let basketWidth, basketHeight, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
 let appleX, bananaX, pineappleX, grapeX, strawberryX; 
 let posX, posY, cursorX, cursorY, imgY, imgWidth, xSpeed;
+let hit = false;
 
 function setup() {
   bgImage = loadImage("assets/forestbackground.jpg");
@@ -29,9 +30,14 @@ function draw() {
   moveFruit();
 } 
 
+function checkCollide () {
+    
+}
+
+
 //Make the coustum mouse cursor move with mouse control
 function myMouseDragged() {
-  if (cursorX < posX || cursorX > posX + 100 || cursorY < posY || cursorY > posY + 100) {
+  if (cursorX < posX || cursorX > posX + basketWidth || cursorY < posY || cursorY > posY + basketHeight) {
     cursorX += mouseX - cursorX;
     cursorY += mouseY - cursorY;
     return;
@@ -40,14 +46,13 @@ function myMouseDragged() {
   cursorX += 0.1 * (mouseX - cursorX);
 
   if (cursorX < posX) {
-    posX -= Math.abs(cursorX - posX) + 50;
+    posX -= Math.abs(cursorX - posX) + basketWidth/2;
   } 
   else if (cursorX > posX) {
-    posX += Math.abs(cursorX - posX) - 50;
+    posX += Math.abs(cursorX - posX) - basketWidth/2;
   }
   
-  cursorX = posX + 50;
-  
+  cursorX = posX + basketWidth/2;
 }
 
 function mouseMoved() {
