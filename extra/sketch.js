@@ -1,15 +1,19 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
 
+
+var hit = false;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
 }
 
 function draw() {
-  background(220);
+  background(255);
+  rect(200,200,100,150);
+  rect(mouseX,mouseY,50,75);
+
+  hit = collideRectRect(200,200,100,150,mouseX,mouseY,50,75);
+  if (hit === true) {
+    background(0);
+  }
+
 }

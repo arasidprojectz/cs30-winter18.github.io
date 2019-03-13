@@ -9,7 +9,11 @@ let bgImage, basketImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeI
 let basketWidth, basketHeight, scaleApple, scalePineapple, scaleStrawberry, scaleBanana, scaleGrape;
 let appleX, bananaX, pineappleX, grapeX, strawberryX; 
 let posX, posY, cursorX, cursorY, imgY, imgWidth, xSpeed;
+
 let hit = false;
+let appleSize = 35;
+let basketSize = 100;
+
 
 function setup() {
   bgImage = loadImage("assets/forestbackground.jpg");
@@ -28,16 +32,21 @@ function draw() {
   createCursor();
   displayFruits();
   moveFruit();
+  checkCollide();
 } 
 
-function checkCollide () {
-    
+function checkCollide() {
+  let hit = collideRectRect(appleX, imgY, appleSize, appleSize, posX, posY, basketSize, basketSize);
+  if (hit === true) {
+    console.log("hit!");
+    background(0);
+  }
 }
 
 
 //Make the coustum mouse cursor move with mouse control
 function myMouseDragged() {
-  if (cursorX < posX || cursorX > posX + basketWidth || cursorY < posY || cursorY > posY + basketHeight) {
+  if (cursorX < posX || cursorX > posX + basketSize || cursorY < posY || cursorY > posY + basketSize) {
     cursorX += mouseX - cursorX;
     cursorY += mouseY - cursorY;
     return;
@@ -46,13 +55,13 @@ function myMouseDragged() {
   cursorX += 0.1 * (mouseX - cursorX);
 
   if (cursorX < posX) {
-    posX -= Math.abs(cursorX - posX) + basketWidth/2;
+    posX -= Math.abs(cursorX - posX) + basketSize/2;
   } 
   else if (cursorX > posX) {
-    posX += Math.abs(cursorX - posX) - basketWidth/2;
+    posX += Math.abs(cursorX - posX) - basketSize/2;
   }
   
-  cursorX = posX + basketWidth/2;
+  cursorX = posX + basketSize/2;
 }
 
 function mouseMoved() {
@@ -76,14 +85,14 @@ function moveHat() {
 
 //Display the hat on the screen
 function displayHat() { 
-  image(basketImg, posX, posY, basketWidth, basketHeight);
+  image(basketImg, posX, posY, basketSize, basketSize);
 } 
 
 
 // Display the fruits images
 function displayFruits() {
   for (let i = 0; i < 15; i++) {
-    image(appleImg, appleX, imgY, appleImg.width * scaleApple, appleImg.height * scaleApple);
+    image(appleImg, appleX, imgY, appleSize, appleSize);
   }
   // for (let i = 0; i < 5; i++) {
   //   image(bananaImg, bananaX, imgY, bananaImg.width * scaleBanana, bananaImg.height * scaleBanana);
