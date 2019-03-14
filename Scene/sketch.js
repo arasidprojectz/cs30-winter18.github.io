@@ -33,12 +33,11 @@ function draw() {
 } 
 
 function keepGameScore() {
-  let gameScore = "0";
   fill(0);
   noStroke();
   textSize(40);
   textLeading(10); 
-  text(gameScore, 860, 40);
+  text("Score:" + gamePoint , 500, 40);
 }
 
 function pointForApple() {
@@ -48,6 +47,7 @@ function pointForApple() {
   textSize(25);
   textLeading(10); 
   text(applePoint, appleX, appleY);
+  gamePoint += 6;
 }
 
 function pointForBanana() {
@@ -92,6 +92,7 @@ function checkCollide() {
   hit = collideRectRect(appleX, appleY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
     pointForApple(); 
+ 
   }
   hit = collideRectRect(bananaX, bananaY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
