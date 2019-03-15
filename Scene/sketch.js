@@ -5,31 +5,29 @@
 // Extra for Experts:
 // Add music, try to make a mouse cursor
 
-let bgImage, basketImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg, scoreButtonImg, gamePoint;
-let basketSize, appleSize, bananaSize, pineappleSize, grapeSize, strawberryWidth, strawberryHeight, scoreButtonWidth, scoreButtonHeight;
-let appleX, bananaX, pineappleX, grapeX, strawberryX; 
-let appleY, bananaY, pineappleY, grapeY, strawberryY;
-let posX, posY, cursorX, cursorY, xSpeed, hit;
+let bgImage, basketImg, appleImg, bananaImg, strawberryImg, pineappleImg, grapeImg, scoreButtonImg, grenadeImg;
+let basketSize, appleSize, bananaSize, pineappleSize, grapeSize, strawberryWidth, strawberryHeight, scoreButtonWidth, scoreButtonHeight, grenadeSize;
+let appleX, bananaX, pineappleX, grapeX, strawberryX, buttonX, grenadeX; 
+let appleY, bananaY, pineappleY, grapeY, strawberryY, buttonY, grenadeY;
+let posX, posY, cursorX, cursorY, xSpeed, hit, gamePoint;
 
 function setup() {
   bgImage = loadImage("assets/forestbackground.jpg");
   createCanvas(900, 700); 
-  basketSize = 90, appleSize = 35, bananaSize = 50, grapeSize = 45, pineappleSize = 60, strawberryWidth = 30, strawberryHeight = 35, scoreButtonWidth = 100, scoreButtonHeight = 50;
-  appleX = random(0, width), bananaX = random(5, width), pineappleX = random(10, width), grapeX = random(15, width), strawberryX = random(20, width);
-  appleY = 0, bananaY = 0, pineappleY = 0, grapeY = 0, strawberryY = 0;
+  basketSize = 90, appleSize = 35, bananaSize = 50, grapeSize = 45, pineappleSize = 60, strawberryWidth = 30, strawberryHeight = 35, scoreButtonWidth = 100, scoreButtonHeight = 50, grenadeSize = 60;
+  appleX = random(0, width), bananaX = random(5, width), pineappleX = random(10, width), grapeX = random(15, width), strawberryX = random(20, width), grenadeX = random(20, width), buttonX = 735;
+  appleY = 0, bananaY = 0, pineappleY = 0, grapeY = 0, strawberryY = 0, buttonY = 0, grenadeY = 0;
   posX = 350, posY = 520, cursorX = 100, cursorY = 100, xSpeed = 5, hit = false, gamePoint = 0;
 }
 
 function draw() {
   background(bgImage);
-  displayHat();
+  displayImg();
   moveHat();
   createCursor();
-  displayFruits();
   moveFruit();
   checkCollide();
   keepGameScore();
-  displayScoreButton();
 } 
 
 function keepGameScore() {
@@ -40,6 +38,15 @@ function keepGameScore() {
   text(gamePoint , 830, 40);
 }
 
+function pointForGrenade() {
+  let grenadePoint = "-15";
+  fill(0);
+  noStroke();
+  textSize(25);
+  textLeading(10); 
+  text(grenadePoint, grenadeX, grenadeY);
+  gamePoint -= 15;
+}
 function pointForApple() {
   let applePoint = "+6";
   fill(0);
@@ -96,23 +103,26 @@ function checkCollide() {
   hit = collideRectRect(appleX, appleY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
     pointForApple(); 
- 
   }
   hit = collideRectRect(bananaX, bananaY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
-    pointForBanana();  
+    pointForBanana();
   }
   hit = collideRectRect(pineappleX, pineappleY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
-    pointForPineapple();  
+    pointForPineapple();
   }
   hit = collideRectRect(grapeX, grapeY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
-    pointForGrape();  
+    pointForGrape(); 
   }
   hit = collideRectRect(strawberryX, strawberryY, appleSize, appleSize, posX, posY, basketSize, basketSize);
   if (hit === true) {
-    pointForStrawberry();  
+    pointForStrawberry();
+  }
+  hit = collideRectRect(grenadeX, grenadeY, grenadeSize, grenadeSize, posX, posY, basketSize, basketSize);
+  if (hit === true) {
+    pointForGrenade();  
   }
 }
 
@@ -145,7 +155,7 @@ function mouseDragged() {
   myMouseDragged();
 }
 
-// Move hat wiht key control
+// Move hat with key control
 function moveHat() {
   if (keyIsDown(LEFT_ARROW) && posX > 0) {
     posX -= xSpeed; 
@@ -155,65 +165,54 @@ function moveHat() {
   }
 }
 
-//Display the hat on the screen
-function displayHat() { 
+// Display all of the images
+function displayImg() {
   image(basketImg, posX, posY, basketSize, basketSize);
-} 
-
-function displayScoreButton() { 
-  image(scoreButtonImg, 735, 0, scoreButtonWidth, scoreButtonHeight);
-} 
-
-
-// Display the fruits images
-function displayFruits() {
-  for (let i = 0; i < 15; i++) {
-    image(appleImg, appleX, appleY, appleSize, appleSize);
-  }
-  for (let i = 0; i < 5; i++) {
-    image(bananaImg, bananaX, bananaY, bananaSize, bananaSize);
-  }
-  for (let i = 0; i < 20; i++) {
-    image(strawberryImg, strawberryX, strawberryY, strawberryWidth, strawberryHeight);
-  }
-  for (let i = 0; i < 25; i++) {
-    image(pineappleImg, pineappleX, pineappleY, pineappleSize, pineappleSize);
-  }
-  for (let i = 0; i < 30; i++) {
-    image(grapeImg, grapeX, grapeY, grapeSize, grapeSize);
-  }
+  image(appleImg, appleX, appleY, appleSize, appleSize);
+  image(bananaImg, bananaX, bananaY, bananaSize, bananaSize);
+  image(strawberryImg, strawberryX, strawberryY, strawberryWidth, strawberryHeight);
+  image(pineappleImg, pineappleX, pineappleY, pineappleSize, pineappleSize);
+  image(grapeImg, grapeX, grapeY, grapeSize, grapeSize);
+  image(scoreButtonImg, buttonX, buttonY, scoreButtonWidth, scoreButtonHeight);
+  image(grenadeImg, grenadeX, grenadeY, grenadeSize, grenadeSize);
 }
 
 // Make fruits fall down randomly from the top of the screen
 function moveFruit() {
-  appleY += random(0.5, 1.5);
+  appleY += random(1, 1.5);
   if (appleY > 486) {
     appleY = 0;
     appleX = random(0, width);
   }
 
-  bananaY += random(0.5, 1.8);
-  if (bananaY > 486) {
+  bananaY += random(1, 1.9);
+  if (bananaY > 487) {
     bananaY = 0;
     bananaX = random(5, width);
   }
 
-  pineappleY += random(0.5, 1.9);
-  if (pineappleY > 486) {
+  pineappleY += random(1, 2.3);
+  if (pineappleY > 487) {
     pineappleY = 0;
     pineappleX = random(10, width);
   }
 
-  grapeY += random(0.5, 2.5);
-  if (grapeY > 486) {
+  grapeY += random(1, 2.7);
+  if (grapeY > 488) {
     grapeY = 0;
     grapeX = random(15, width);
   }
 
-  strawberryY += random(0.5, 2.8);
-  if (strawberryY > 486) {
+  strawberryY += random(1, 2.9);
+  if (strawberryY > 486.6) {
     strawberryY = 0;
     strawberryX = random(20, width);
+  }
+
+  grenadeY += random(1, 3.5);
+  if (grenadeY > 462) {
+    grenadeY = 0;
+    grenadeX = random(20, width);
   }
 }
 
@@ -221,7 +220,7 @@ function preload() {
   basketImg = loadImage("assets/basket-clipart.png "), appleImg = loadImage("assets/appleclipart.png");
   bananaImg = loadImage("assets/bananaclipart.png"), strawberryImg = loadImage("assets/strawberryclipart.png");
   pineappleImg = loadImage("assets/pineappleclipart.png"), grapeImg = loadImage("assets/grapeclipart.png");
-  scoreButtonImg = loadImage("assets/score-button.png");
+  scoreButtonImg = loadImage("assets/score-button.png"); grenadeImg = loadImage("assets/grenade.png");
 }
 
 function createCursor() {
