@@ -37,7 +37,7 @@ function keepGameScore() {
   noStroke();
   textSize(40);
   textLeading(10); 
-  text("Score:" + gamePoint , 500, 40);
+  text(gamePoint , 830, 40);
 }
 
 function pointForApple() {
@@ -57,6 +57,7 @@ function pointForBanana() {
   textSize(25);
   textLeading(10); 
   text(bananaPoint, bananaX, bananaY);
+  gamePoint += 2;
 }
 
 function pointForPineapple() {
@@ -66,6 +67,7 @@ function pointForPineapple() {
   textSize(25);
   textLeading(10); 
   text(pineapplePoint, pineappleX, pineappleY);
+  gamePoint += 10;
 }
 
 function pointForGrape() {
@@ -75,6 +77,7 @@ function pointForGrape() {
   textSize(25);
   textLeading(10); 
   text(grapePoint, grapeX, grapeY);
+  gamePoint += 4;
 }
 
 function pointForStrawberry() {
@@ -84,6 +87,7 @@ function pointForStrawberry() {
   textSize(25);
   textLeading(10); 
   text(strawberryPoint, strawberryX, strawberryY);
+  gamePoint += 8;
 }
 
 
@@ -157,7 +161,7 @@ function displayHat() {
 } 
 
 function displayScoreButton() { 
-  image(scoreButtonImg, 755, 0, scoreButtonWidth, scoreButtonHeight);
+  image(scoreButtonImg, 735, 0, scoreButtonWidth, scoreButtonHeight);
 } 
 
 
@@ -182,32 +186,32 @@ function displayFruits() {
 
 // Make fruits fall down randomly from the top of the screen
 function moveFruit() {
-  appleY += random(0.5, 1);
-  if (appleY > 550) {
+  appleY += random(0.5, 1.5);
+  if (appleY > 486) {
     appleY = 0;
     appleX = random(0, width);
   }
 
-  bananaY += random(0.5, 1.5);
-  if (bananaY > 550) {
+  bananaY += random(0.5, 1.8);
+  if (bananaY > 486) {
     bananaY = 0;
     bananaX = random(5, width);
   }
 
-  pineappleY += random(0.5, 2);
-  if (pineappleY > 550) {
+  pineappleY += random(0.5, 1.9);
+  if (pineappleY > 486) {
     pineappleY = 0;
     pineappleX = random(10, width);
   }
 
   grapeY += random(0.5, 2.5);
-  if (grapeY > 550) {
+  if (grapeY > 486) {
     grapeY = 0;
     grapeX = random(15, width);
   }
 
-  strawberryY += random(0.5, 3);
-  if (strawberryY > 550) {
+  strawberryY += random(0.5, 2.8);
+  if (strawberryY > 486) {
     strawberryY = 0;
     strawberryX = random(20, width);
   }
