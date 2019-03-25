@@ -9,6 +9,7 @@ module.exports = {
       "defaultParams": true,
       "forOf": true
     },
+    "rules": {
         // enable additional rules
         "indent": ["warn", 2],
         "quotes": ["warn", "double"],
