@@ -1,75 +1,32 @@
-// State Variable Assignment
-// Al Rasid Mamun
-// April 10, 2019
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
-
-let buttonX, buttonY, xSpeed, ySpeed;
-let buttonWidth, buttonHeight;
-let blueButton;
-let state;
-
+let imgs = [];
+let index;
+let testImg;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  state = "menu";
-  buttonX = width/2;
-  buttonY = height/2;
-  buttonWidth = 120; 
-  buttonHeight = 50;
+  index = 0;
+}
+
+function preload() {
+  for (let i=0; i<5; i++) {
+    imgs[i] = loadImage("assets/moveleft"+i+".png"); 
+  }
+  console.log(imgs);
+  // testImg = loadImage("moveleft0.png");
 }
 
 function draw() {
-  background(220);
-  displayImages();
-  background(0);
-  if (state === "menu") {
-    displayImages();
-  }
-  if (state === "characters") {
-    selectCharacter();
-  }
-  if (state === "game") {
-    beginToPlay();
-  }
-  if (state === "quit") {
-    quitGame();
-  }
-}
+  background(0, 255, 0);
+  image(imgs[index], 0, 0, 200, 220);
+  // image(imgs[index], 0, 0, 200, 220);
+  // index = (index + 1) % imgs.length;
+  // for (let i=0; i<5; i++) {
+  //   image(imgs[i], 0, 0, 140, 160); 
+  //   i++;
+  // }
 
-function beginToPlay(){
-
-}
-
-function quitGame() {
-
-}
-
-function displayImages() {
-  image(blueButton, buttonX, buttonY, buttonWidth, buttonHeight);
-}
-
-
-function preload() {
-  blueButton = loadImage("assets/blue-button.png");
-}
-
-function selectCharacter() {
-  fill(255);
-  ellipse(30, 30, 30, 30);
-}
-
-function displayMenu() {
-  rectMode(CENTER);
-  rect(buttonX, buttonY, buttonWidth, buttonHeight);
 }
 
 function mousePressed() {
-  if (state === "menu") {
-    if (selectCharacter) {
-      state = "characters";
-    }
-  }
+  index = (index + 1) % imgs.length;
 }
-
