@@ -21,58 +21,38 @@ function setup() {
 function preload() {
   for (let i=0; i<5; i++) {
     imgs[i] = loadImage("assets/m1-movelt/moveleft"+i+".png");
-  }
-  for (let i=0; i<5; i++) {
-    imgs[i] = loadImage("assets/m1-movelt/moveleft"+i+".png")
+    imgs2[i] = loadImage("assets/m1-movert/m1-movert"+i+".png");
   }
 }
 
 function draw() {
   background(0);
-  if (state = 1) {
-    image(imgs[index], x, y, 200, 220);
-  }
-  if (state = 2) {
-    image(imgs[index], x, y, 200, 220);
-  }
-  // image(imgs2[index], x, y, 200, 220);
+  checkState();
   moveLeft();
 
 }
 
-if (state === 1) {
-  image(imgs, x, y, 200, 220);
-}
-if (state === 2) {
-  image(imgs1, x, y, 200, 220);
-}
 
-// function keyPressed() {
-//   if (keyCode === RIGHT_ARROW) {
-//     index = (index + 1) % imgs.length;
-//     x += speedX;
-//   } else if (keyCode === RIGHT_ARROW) {
-//     index = (index + 1) % imgs.length;
-//   }
-// }
+function checkState() {
+  if (state === 1) {
+    image(imgs[index], x, y, 200, 220);
+  }
+  if (state === 2) {
+    image(imgs2[index], x, y, 200, 220);
+  }
+}
 
 function moveLeft() {
-  if (keyIsDown(RIGHT_ARROW) && frameCount % 5 === 0) {
+  if (keyIsDown(RIGHT_ARROW) && frameCount % 12 === 0) {
     state = 1;
     index = (index + 1) % imgs.length;
     x += speedX;
   }
-  else if (keyIsDown(LEFT_ARROW) && frameCount % 5 === 0) {
+  else if (keyIsDown(LEFT_ARROW) && frameCount % 12 === 0) {
     state = 2;
     index = (index + 1) % imgs.length;
-    x += speedX;
+    x -= speedX;
   }
 }
-
-// function keyTyped() {
-//   if (key === 'RIGHT_ARROW') {
-//     index = (index + 1) % imgs.length;
-//   }
-// }
 
     

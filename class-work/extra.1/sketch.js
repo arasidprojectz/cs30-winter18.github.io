@@ -1,46 +1,42 @@
-let imgs;
-let imgs1;
-let x;
-let y;
-let state;
 
+let y, yVelocity, yAcceleration;
+let x, radius;
+let gravity, ground;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  x = 0;
-  y = 0;
-  state = 1;
-
-}
-
-function preload() {
-  imgs = loadImage("assets/m1-movelt/moveleft0.png");
-  imgs1 = loadImage("assets/m1-movert/m1-movert0.png");
-
-
+  radius = 25;
+  ground = height - radius;
+  x = width/2;
+  gravity = 0.1;
+  yLocation = ground;
+  yVelocity = 0;
+  yAcceleration = 0;
 }
 
 function draw() {
-  background(0);
-  checkState()
-  if (state === 1) {
-    image(imgs, x, y, 200, 220);
-  }
-  if (state === 2) {
-    image(imgs1, x, y, 200, 220);
-  }
-    
+  background(220);
 
-} 
+  // move ball
+  yVelocity += yAcceleration;
+  yLocation += yVelocity;
 
-function checkState() {
-  if (keyIsDown(RIGHT_ARROW)) {
-    state = 1;
-    x += 5;
-  } 
-  else if (keyIsDown(LEFT_ARROW)) {
-    state = 2;
-    x -= 5;
+  // physics
+  yAcceleration = 0;
+  yVelocity += gravity;
+  if (yLocation > ground) {
+    yLocation = ground;
+    yVelocity = 0;
   }
+
+  // display ball
+  fill(0);
+  ellipse(x, yLocation, radius*2, radius*2);
 }
 
+
+function keyPressed() {
+  if (key === " ") {
+    yAcceleration = -5;
+  }
+}
