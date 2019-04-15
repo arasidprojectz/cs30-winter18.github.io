@@ -1,42 +1,45 @@
+let x;
+let y;
+let w; 
+let h;
+let g; 
+let connected;
+let speedX; 
+let speedY;
 
-let y, yVelocity, yAcceleration;
-let x, radius;
-let gravity, ground;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  radius = 25;
-  ground = height - radius;
-  x = width/2;
-  gravity = 0.1;
-  yLocation = ground;
-  yVelocity = 0;
-  yAcceleration = 0;
+  createCanvas(400, 400);
+  x = 100;
+  y = 100;
+  w = 32;
+  h = 32; 
+  g = 0.6;
+  speedX = 5; 
+  speedY = 5;
+  connected = false; 
 }
 
 function draw() {
   background(220);
-
-  // move ball
-  yVelocity += yAcceleration;
-  yLocation += yVelocity;
-
-  // physics
-  yAcceleration = 0;
-  yVelocity += gravity;
-  if (yLocation > ground) {
-    yLocation = ground;
-    yVelocity = 0;
+  rect(x, y, w, h);
+  // land(100);
+  if ((key === " ") && connected === true) {
+    speedY = -15;
+    connected = false;
   }
-
-  // display ball
-  fill(0);
-  ellipse(x, yLocation, radius*2, radius*2);
+  if (connected === false) {
+    speedY += g;
+  }  
+  if (y > height) {
+    y = 0;
+    speedY = 0;
+  }  
+  y += speedY;
 }
 
-
-function keyPressed() {
-  if (key === " ") {
-    yAcceleration = -5;
-  }
-}
+// function land(desY) {
+//   speedY = 0;
+//   conncted = true;
+//   y = desY - h;
+// }
