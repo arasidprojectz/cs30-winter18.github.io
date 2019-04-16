@@ -1,45 +1,54 @@
-let x;
-let y;
-let w; 
-let h;
-let g; 
-let connected;
-let speedX; 
-let speedY;
 
+let y, speedY;
+let x, radius;
+let gravity, jumping;
+let imgs = [], imgWidth, imgHeight, ground, index;
 
 function setup() {
-  createCanvas(400, 400);
-  x = 100;
-  y = 100;
-  w = 32;
-  h = 32; 
-  g = 0.6;
-  speedX = 5; 
-  speedY = 5;
-  connected = false; 
+  createCanvas(windowWidth, windowHeight);
+  imgWidth = 400;
+  imgHeight = 440; 
+  ground = height - imgHeight; 
+  x = width/2;
+  y = ground;
+  gravity = 0.1;
+  speedY = 0;
+  jumping = true;
+  index = 0;
+  
 }
 
 function draw() {
   background(220);
-  rect(x, y, w, h);
-  // land(100);
-  if ((key === " ") && connected === true) {
-    speedY = -15;
-    connected = false;
-  }
-  if (connected === false) {
-    speedY += g;
-  }  
-  if (y > height) {
-    y = 0;
-    speedY = 0;
-  }  
   y += speedY;
+  speedY += gravity;
+  if (y > ground) {
+    jumping = false;
+    y = ground;
+  }
+  image(imgs[index], x, y, imgWidth, imgHeight);
+
+
+  
 }
 
-// function land(desY) {
-//   speedY = 0;
-//   conncted = true;
-//   y = desY - h;
+
+function keyPressed() {
+  if ((key === " ") && jumping === false)  {
+    // index = (index + 1) % imgs.length;
+    speedY = -5;
+    jumping = true;
+    
+  }
+}
+
+function preload() {
+  for (let i=0; i<5; i++) {
+    imgs[i] = loadImage("assets/m1-jumplt/m1-jumplt"+i+".png");
+  }
+  
+}
+
+// function mousePressed() {
+//   index = (index + 1) % imgs.length;
 // }
