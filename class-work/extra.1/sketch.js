@@ -24,15 +24,20 @@ function draw() {
 
   speedY += gravity;
   if (y > ground) {
+    image(imgs[index], x, y, imgWidth, imgHeight);
     jumping = false;
     y = ground;
   }
-  image(imgs[index], x, y, imgWidth, imgHeight);
+  // index = (index += 1) % imgs.length;
+  // image(imgs[index], x, y, imgWidth, imgHeight);
+  image(imgs2[index], x, y, imgWidth, imgHeight);
 }
+
 
 function keyPressed() {
   if ((key === " ") && jumping === false)  {
     // index = (index += 1) % imgs.length;
+    image(imgs2[index], x, y, imgWidth, imgHeight);
     speedY = -5;
     jumping = true;
     
@@ -40,9 +45,8 @@ function keyPressed() {
 }
 
 function preload() {
-  for (let i=0; i<5; i++) {
-    imgs[i] = loadImage("assets/m1-jumplt/m1-jumplt"+i+".png");
-    // imgs[i] = loadImgae("assets/m1-jumplt/m1-jumplt"+i+".png")
-  }
+  for (let i=0; i<2; i++) {
+    imgs[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");
+    imgs2[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");  }
   
 }
