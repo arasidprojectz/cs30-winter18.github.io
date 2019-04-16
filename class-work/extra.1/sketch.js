@@ -2,7 +2,7 @@
 let y, speedY;
 let x, radius;
 let gravity, jumping;
-let imgs = [], imgWidth, imgHeight, ground, index;
+let imgs = [], imgs2 = [], imgWidth, imgHeight, ground, index, stateOfJump;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,27 +15,24 @@ function setup() {
   speedY = 0;
   jumping = true;
   index = 0;
-  
+  stateOfJump = 1;
 }
 
 function draw() {
   background(220);
   y += speedY;
+
   speedY += gravity;
   if (y > ground) {
     jumping = false;
     y = ground;
   }
   image(imgs[index], x, y, imgWidth, imgHeight);
-
-
-  
 }
-
 
 function keyPressed() {
   if ((key === " ") && jumping === false)  {
-    // index = (index + 1) % imgs.length;
+    // index = (index += 1) % imgs.length;
     speedY = -5;
     jumping = true;
     
@@ -45,10 +42,7 @@ function keyPressed() {
 function preload() {
   for (let i=0; i<5; i++) {
     imgs[i] = loadImage("assets/m1-jumplt/m1-jumplt"+i+".png");
+    // imgs[i] = loadImgae("assets/m1-jumplt/m1-jumplt"+i+".png")
   }
   
 }
-
-// function mousePressed() {
-//   index = (index + 1) % imgs.length;
-// }
