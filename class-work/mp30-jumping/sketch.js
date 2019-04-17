@@ -2,7 +2,7 @@
 let y, speedY;
 let x, radius;
 let gravity, jumping;
-let imgs = [], imgs2 = [], imgWidth, imgHeight, ground, index, state;
+let imgs, imgs2, imgWidth, imgHeight, ground, index, state;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -20,7 +20,7 @@ function setup() {
 
 function draw() {
   background(220);
-  stateCheck(); 
+  // stateCheck(); 
   y += speedY;
   speedY += gravity;
   if (y > ground) {
@@ -32,28 +32,43 @@ function draw() {
 //   image(imgs2[index], x, y, imgWidth, imgHeight);
 }
 
-function stateCheck() {
-  if (state === 1) {
-    image(imgs[index], x, y, imgWidth, imgHeight);
-  } 
-  if (state === 2) {
-    image(imgs2[index], x, y, imgWidth, imgHeight);
-  } 
-}
+// function stateCheck() {
+//   if (state === 1) {
+//     image(imgs[index], x, y, imgWidth, imgHeight);
+//   } 
+//   if (state === 2) {
+//     image(imgs2[index], x, y, imgWidth, imgHeight);
+//   } 
+// }
 
 function keyPressed() {
   if ((key === " ") && jumping === false) {
-    index = (index + 1) % imgs.length;
+    image(imgs, x, y, imgWidth, imgHeight);
+    // index = (index + 1) % imgs.length;
     speedY = -5;
-    jumping = true;
-    
+    jumping = true; 
   }
 }
 
+// function keyReleased() {
+//   if ((key === " ") && jumping === true) {
+//     image(imgs, x, y, imgWidth, imgHeight);
+//   }  
+// }
+
 function preload() {
-  for (let i=0; i<2; i++) {
-    imgs[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");
-    imgs2[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");  
-  }
-  
+  imgs = loadImage("assets/m1-jumplt/m1-jumplt1.png");
+  imgs2 = loadImage("assets/m1-jumplt/m1-jumplt2.png");
 }
+
+
+
+// function preload() {
+//   for (let i=0; i<2; i++) {
+//     imgs[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");
+//     imgs2[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");  
+//   }
+  
+// }
+
+
