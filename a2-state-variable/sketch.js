@@ -94,7 +94,7 @@ function setup() {
 }
 
 function preload() {
-  for (let i=0; i<12; i++) {
+  for (let i=0; i<16; i++) {
     imgs[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
     imgs2[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
   }
