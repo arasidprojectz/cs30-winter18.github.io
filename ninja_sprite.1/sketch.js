@@ -11,7 +11,7 @@ function setup() {
 }
 
 function preload() {
-  imgs = loadImage("assets/ninja_walk/move_left/ninja_walk1.png");
+  imgs = loadImage("assets/ninja-walk/move_left/ninja_walk1.png");
 }
 
 function draw() {
