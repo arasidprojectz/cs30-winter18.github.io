@@ -1,3 +1,35 @@
+let sprite;
+let img;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  sprite = {
+    x: 0,
+    y: 0,
+    spriteWidth: 200,
+    spriteHeight: 220,
+    speedX: 5,
+    speedY: 5,
+    spriteState: 0,
+    index: 0,
+  };
+}
+
+function draw() {
+  background(0);
+  image(img, sprite.x, sprite.y, 200, 220);
+}
+
+
+
+function preload() {
+  img = loadImage("assets/ninja-walk/move_left/ninja_walk.png");
+
+}
+
+
+
+
 // let imgs = [];
 // let imgs2 = [];
 // let index;
