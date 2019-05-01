@@ -107,10 +107,10 @@ function preload() {
     ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
     ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
   }
-  for (let i=0; i<16; i++) {
-    ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
-    ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
-  }
+  // for (let i=0; i<16; i++) {
+  //   ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
+  //   ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
+  // }
 }
 
 function draw() {
@@ -120,12 +120,12 @@ function draw() {
 }
 
 function checkState() {
-  if (sprite.spriteState === "ninjaIdleRight") {
-    image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
-  }
-  if (sprite.spriteState === "ninjaIdleLeft") {
-    image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
-  }
+  // if (sprite.spriteState === "ninjaIdleRight") {
+  //   image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
+  // }
+  // if (sprite.spriteState === "ninjaIdleLeft") {
+  //   image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
+  // }
   if (sprite.spriteState === "ninjaRight") {
     image(ninjaLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
   }
@@ -140,10 +140,10 @@ function moveLeftToRight() {
     sprite.index = (sprite.index + 1) % ninjaLeftImg.length;
     sprite.x += sprite.speedX;
   } 
-  else if (!keyIsDown(RIGHT_ARROW) && frameCount % 4 === 0) {
-    sprite.spriteState = "ninjaIdleRight";
+  // else if (!keyIsDown(RIGHT_ARROW) && frameCount % 4 === 0) {
+  //   sprite.spriteState = "ninjaIdleRight";
 
-  }
+  // }
 
 
   if (keyIsDown(LEFT_ARROW) && frameCount % 7 === 0) {
