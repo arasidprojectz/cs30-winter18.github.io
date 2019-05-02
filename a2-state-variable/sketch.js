@@ -72,24 +72,19 @@
 //   }
 // }
 
-let sprite;
+let spritePosition;
+let spriteSize;
+
+
 let ninjaIdleLeftImg = [];
 let ninjaIdleRightImg = [];
 let ninjaLeftImg = [];
 let ninjaRightImg = [];
 
-
-// let index;
-// let x;
-// let y;
-// let speedX;
-// let speedY;
-// let state;
-
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  sprite = {
+  
+  spritePosition = {
     x: 0, 
     y: 0, 
     speedX: 10, 
@@ -103,14 +98,14 @@ function setup() {
 }
 
 function preload() {
+  for (let i=0; i<8; i++) {
+    ninjaLeftImg[i] = loadImage("assets/ninja-idle/left_idle/ninja_idle_"+i+".png");
+    ninjaRightImg[i] = loadImage("assets/ninja-idle/right_idle/ninja_idle_"+i+".png");
+  }
   for (let i=0; i<16; i++) {
     ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
     ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
   }
-  // for (let i=0; i<16; i++) {
-  //   ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
-  //   ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
-  // }
 }
 
 function draw() {
@@ -120,12 +115,12 @@ function draw() {
 }
 
 function checkState() {
-  // if (sprite.spriteState === "ninjaIdleRight") {
-  //   image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
-  // }
-  // if (sprite.spriteState === "ninjaIdleLeft") {
-  //   image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
-  // }
+  if (sprite.spriteState === "ninjaIdleRight") {
+    image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
+  }
+  if (sprite.spriteState === "ninjaIdleLeft") {
+    image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
+  }
   if (sprite.spriteState === "ninjaRight") {
     image(ninjaLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
   }
