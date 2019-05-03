@@ -72,24 +72,19 @@
 //   }
 // }
 
-let sprite;
+let spritePosition;
+let spriteSize;
+
+
 let ninjaIdleLeftImg = [];
 let ninjaIdleRightImg = [];
 let ninjaLeftImg = [];
 let ninjaRightImg = [];
 
-
-// let index;
-// let x;
-// let y;
-// let speedX;
-// let speedY;
-// let state;
-
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  sprite = {
+  
+  spritePosition = {
     x: 0, 
     y: 0, 
     speedX: 10, 
@@ -103,9 +98,9 @@ function setup() {
 }
 
 function preload() {
-  for (let i=0; i<16; i++) {
-    ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
-    ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
+  for (let i=0; i<8; i++) {
+    ninjaLeftImg[i] = loadImage("assets/ninja-idle/left_idle/ninja_idle_"+i+".png");
+    ninjaRightImg[i] = loadImage("assets/ninja-idle/right_idle/ninja_idle_"+i+".png");
   }
   for (let i=0; i<16; i++) {
     ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
@@ -140,10 +135,10 @@ function moveLeftToRight() {
     sprite.index = (sprite.index + 1) % ninjaLeftImg.length;
     sprite.x += sprite.speedX;
   } 
-  else if (!keyIsDown(RIGHT_ARROW) && frameCount % 4 === 0) {
-    sprite.spriteState = "ninjaIdleRight";
+  // else if (!keyIsDown(RIGHT_ARROW) && frameCount % 4 === 0) {
+  //   sprite.spriteState = "ninjaIdleRight";
 
-  }
+  // }
 
 
   if (keyIsDown(LEFT_ARROW) && frameCount % 7 === 0) {
