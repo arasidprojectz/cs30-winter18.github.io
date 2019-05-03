@@ -72,8 +72,7 @@
 //   }
 // }
 
-let spritePosition;
-let spriteSize;
+let sprite;
 
 
 let ninjaIdleLeftImg = [];
@@ -84,14 +83,14 @@ let ninjaRightImg = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   
-  spritePosition = {
+  sprite = {
     x: 0, 
     y: 0, 
     speedX: 10, 
     speedY: 2,
     imgWidth: 380,
     imgHeight: 320,
-    spriteState: "ninjaIdleLeft",
+    spriteState: "ninjaIdleRight",
     index: 0,
   };
 
@@ -99,13 +98,13 @@ function setup() {
 
 function preload() {
   for (let i=0; i<8; i++) {
-    ninjaLeftImg[i] = loadImage("assets/ninja-idle/left_idle/ninja_idle_"+i+".png");
-    ninjaRightImg[i] = loadImage("assets/ninja-idle/right_idle/ninja_idle_"+i+".png");
+    ninjaIdleLeftImg[i] = loadImage("assets/ninja-idle/left_idle/ninja_idle_"+i+".png");
+    ninjaIdleRightImg[i] = loadImage("assets/ninja-idle/right_idle/ninja_idle_"+i+".png");
   }
-  for (let i=0; i<16; i++) {
-    ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
-    ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
-  }
+  // for (let i=0; i<16; i++) {
+    // ninjaLeftImg[i] = loadImage("assets/ninja-walk/move_left/ninja_walk_"+i+".png");
+    // ninjaRightImg[i] = loadImage("assets/ninja-walk/move_right/ninja_walk_"+i+".png");
+  // }
 }
 
 function draw() {
@@ -134,18 +133,16 @@ function moveLeftToRight() {
     sprite.spriteState = "ninjaRight";
     sprite.index = (sprite.index + 1) % ninjaLeftImg.length;
     sprite.x += sprite.speedX;
-  } 
-  // else if (!keyIsDown(RIGHT_ARROW) && frameCount % 4 === 0) {
-  //   sprite.spriteState = "ninjaIdleRight";
-
-  // }
-
-
-  if (keyIsDown(LEFT_ARROW) && frameCount % 7 === 0) {
-    sprite.spriteState = "ninjaLeft";
-    sprite.index = (sprite.index + 1) % ninjaRightImg.length;
-    sprite.x -= sprite.speedX;
+  } else {
+    sprite.spriteState = "ninjaIdleRight"; 
   }
+
+
+  // if (keyIsDown(LEFT_ARROW) && frameCount % 7 === 0) {
+    // sprite.spriteState = "ninjaLeft";
+    // sprite.index = (sprite.index + 1) % ninjaRightImg.length;
+    // sprite.x -= sprite.speedX;
+  // }
 }
 
 
