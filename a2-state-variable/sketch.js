@@ -85,9 +85,10 @@ function setup() {
     y: 0, 
     speedX: 10, 
     speedY: 2,
-    imgWidth: 380,
-    imgHeight: 320,
+    imgWidth: 480,
+    imgHeight: 420,
     spriteState: "ninjaLtIdle",
+    lastDirection: "left",
     index: 0,
   };
 
@@ -113,135 +114,42 @@ function draw() {
 
 function checkState() {
   if (sprite.spriteState === "ninjaRtIdle") {
-    image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
+    image(ninjaIdleRightImg[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
   }
   if (sprite.spriteState === "ninjaLtIdle") {
-    image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
+    image(ninjaIdleLeftImg[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
   }
   if (sprite.spriteState === "ninjaRtWalk") {
-    image(ninjaRightImg[sprite.index], sprite.x, sprite.y, 480, 420);
+    image(ninjaRightImg[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
   }
   if (sprite.spriteState === "ninjaLtWalk") {
-    image(ninjaLeftImg[sprite.index], sprite.x, sprite.y, 480, 420);
+    image(ninjaLeftImg[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
   }
 }
 
 function spriteRightToLeft() {
-  if (keyIsDown(RIGHT_ARROW) && keyIsPressed === true && frameCount % 6 === 0) {
+  if (keyIsDown(RIGHT_ARROW) && keyIsPressed === true && frameCount % 5 === 0) {
     sprite.spriteState = "ninjaRtWalk";
     sprite.index = (sprite.index + 1) % ninjaRightImg.length;
+    sprite.lastDirection = "right";
     sprite.x += sprite.speedX;
-  } 
-  else if (keyIsPressed === false &&  frameCount % 10 === 0) {
-    sprite.spriteState = "ninjaRtIdle";
-    sprite.index = (sprite.index + 1) % ninjaIdleRightImg.length;
   }
-
-  if (keyIsDown(LEFT_ARROW) && keyIsPressed === true && frameCount % 6 === 0) {
+  else if (keyIsDown(LEFT_ARROW) && keyIsPressed === true && frameCount % 5 === 0) {
     sprite.spriteState = "ninjaLtWalk";
     sprite.index = (sprite.index + 1) % ninjaLeftImg.length;
+    sprite.lastDirection = "left";
     sprite.x -= sprite.speedX;
   }  
   else if (keyIsPressed === false && frameCount % 10 === 0) {
-    sprite.spriteState = "ninjaLtIdle";
+    if (sprite.lastDirection === "left") {
+      sprite.spriteState = "ninjaLtIdle";
+    } else {
+      sprite.spriteState = "ninjaRtIdle";
+    }
+    // Ternary operator:
+    // var x = (boolean expression) ? value : other value
+    // sprite.spriteState = sprite.lastDirection === "left" ? "ninjaLtIdle" : "ninjaRtIdle";
     sprite.index = (sprite.index + 1) % ninjaIdleLeftImg.length;
   }   
 }
-
-// let y, speedY;
-// let x, radius;
-// let gravity, jumping;
-// let imgs, imgs2, imgWidth, imgHeight, ground, index, state;
-
-// function setup() {
-//   createCanvas(windowWidth, windowHeight);
-//   imgWidth = 400;
-//   imgHeight = 440; 
-//   ground = height - imgHeight; 
-//   x = width/2;
-//   y = ground;
-//   gravity = 0.1;
-//   speedY = 0;
-//   jumping = true;
-//   index = 0;
-//   state = 2;
-// }
-
-// function draw() {
-//   background(220);
-//   // stateCheck(); 
-//   y += speedY;
-//   speedY += gravity;
-//   if (y > ground) {
-//     jumping = false;
-//     y = ground;
-//   }
-//   // index = (index += 1) % imgs.length;
-//   // image(imgs[index], x, y, imgWidth, imgHeight);
-// //   image(imgs2[index], x, y, imgWidth, imgHeight);
-// }
-
-// // function stateCheck() {
-// //   if (state === 1) {
-// //     image(imgs[index], x, y, imgWidth, imgHeight);
-// //   } 
-// //   if (state === 2) {
-// //     image(imgs2[index], x, y, imgWidth, imgHeight);
-// //   } 
-// // }
-
-// function keyPressed() {
-//   if ((key === " ") && jumping === false) {
-//     image(imgs, x, y, imgWidth, imgHeight);
-//     // index = (index + 1) % imgs.length;
-//     speedY = -5;
-//     jumping = true; 
-//   }
-// }
-
-// // function keyReleased() {
-// //   if ((key === " ") && jumping === true) {
-// //     image(imgs, x, y, imgWidth, imgHeight);
-// //   }  
-// // }
-
-// function preload() {
-//   imgs = loadImage("assets/m1-jumplt/m1-jumplt1.png");
-//   imgs2 = loadImage("assets/m1-jumplt/m1-jumplt2.png");
-// }
-
-
-
-// // function preload() {
-// //   for (let i=0; i<2; i++) {
-// //     imgs[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");
-// //     imgs2[i] = loadImage("assets/m1-jumplt/state-true/m1-jumplt"+i+".png");  
-// //   }
-  
-// // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
