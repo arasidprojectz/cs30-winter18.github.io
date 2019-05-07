@@ -79,21 +79,20 @@ let ninjaLeftImg = [];
 let ninjaRightImg = [];
 let ninjaLeftJump;
 let ninjaRightJump;
-let jumpState = true;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   sprite = {
     x: 0, 
-    y: ground, 
+    y: 0 , 
     speedX: 6, 
     speedY: 2,
     imgWidth: 480,
     imgHeight: 420,
     index: 0,
     gravity: 0.1,
-    ground: height - imgHeight,
+    jumpState: true,
     spriteState: "ninjaRtIdle",
     lastDirection: "right",
   };
@@ -118,6 +117,8 @@ function draw() {
   background(220);
   checkState();
   spriteRightToLeft();
+  // spriteJump();
+  // spriteGravity();
 
 }
 
@@ -168,23 +169,23 @@ function spriteRightToLeft() {
   }   
 }
 
-function spriteJump() {
-  if ((keyIsDown(32)) && keyIsPressed && jumping === false) {
-    state = 2;
-    index = (index + 1) % imgs.length;
-    speedY = -5;
-    jumping = true;
-  }
-  if (keyIsPressed === false && jumping === false) {
-    state = 1;
-  }
-}
+// function spriteJump() {
+//   if ((keyIsDown(32)) && keyIsPressed && jumpState === false) {
+//     sprite.spriteState = "ninjaRtJump";
+//     sprite.index = (sprite.index + 1) % ninjaRightJump.length;
+//     sprite.speedY = -5;
+//     jumpState = true;
+//   }
+//   if (keyIsPressed === false && jumpState === false) {
+//     sprite.spriteState === "ninjaRtIdle";
+//   }
+// }
 
-function spriteGravity() {
-   y += speedY;
-  speedY += gravity;
-  if (y > ground) {
-    jumping = false;
-    y = ground;
-  }  
-}
+// function spriteGravity() {
+//   sprite.y += sprite.speedY;
+//   sprite.speedY += sprite.gravity;
+//   if (sprite.y > height) {
+//     jumpState = false;
+//     sprite.y = sprite.ground;
+//   }  
+// }
