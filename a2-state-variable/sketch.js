@@ -87,8 +87,8 @@ function setup() {
     speedY: 2,
     imgWidth: 480,
     imgHeight: 420,
-    spriteState: "ninjaLtIdle",
-    lastDirection: "left",
+    spriteState: "ninjaRtIdle",
+    lastDirection: "right",
     index: 0,
   };
 
@@ -153,3 +153,6 @@ function spriteRightToLeft() {
   }   
 }
 
+function spriteJump() {
+
+}
