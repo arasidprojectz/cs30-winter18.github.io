@@ -77,20 +77,27 @@ let ninjaIdleLeftImg = [];
 let ninjaIdleRightImg = [];
 let ninjaLeftImg = [];
 let ninjaRightImg = [];
+let ninjaLeftJump;
+let ninjaRightJump;
+let jumpState = true;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   sprite = {
     x: 0, 
-    y: 0, 
-    speedX: 10, 
+    y: ground, 
+    speedX: 6, 
     speedY: 2,
     imgWidth: 480,
     imgHeight: 420,
+    index: 0,
+    gravity: 0.1,
+    ground: height - imgHeight,
     spriteState: "ninjaRtIdle",
     lastDirection: "right",
-    index: 0,
   };
+
 
 }
 
@@ -103,6 +110,8 @@ function preload() {
     ninjaRightImg[i] = loadImage("assets/ninja-walk/right_move/ninja_walk_"+i+".png");
     ninjaLeftImg[i] = loadImage("assets/ninja-walk/left_move/ninja_walk_"+i+".png");
   }
+  ninjaLeftJump = loadImage("assets/ninja-jump/left_jump/ninja_jump_0.png")
+  ninjaRightJump = loadImage("assets/ninja-jump/right_jump/ninja_jump_0.png")
 }
 
 function draw() {
@@ -124,6 +133,12 @@ function checkState() {
   }
   if (sprite.spriteState === "ninjaLtWalk") {
     image(ninjaLeftImg[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
+  }
+  if (sprite.spriteState === "ninjaRtJump") {
+    image(ninjaRightJump[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
+  }
+  if (sprite.spriteState === "ninjaLtJump") {
+    image(ninjaLeftJump[sprite.index], sprite.x, sprite.y, sprite.imgWidth, sprite.imgHeight);
   }
 }
 
@@ -154,5 +169,22 @@ function spriteRightToLeft() {
 }
 
 function spriteJump() {
+  if ((keyIsDown(32)) && keyIsPressed && jumping === false) {
+    state = 2;
+    index = (index + 1) % imgs.length;
+    speedY = -5;
+    jumping = true;
+  }
+  if (keyIsPressed === false && jumping === false) {
+    state = 1;
+  }
+}
 
+function spriteGravity() {
+   y += speedY;
+  speedY += gravity;
+  if (y > ground) {
+    jumping = false;
+    y = ground;
+  }  
 }
