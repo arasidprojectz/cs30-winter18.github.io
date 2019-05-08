@@ -1,4 +1,3 @@
-// State Variable Assignment
 // Al Rasid Mamun
 // April 10, 2019
 //
@@ -162,9 +161,6 @@ function spriteRightToLeft() {
     } else {
       sprite.spriteState = "ninjaRtIdle";
     }
-    // Ternary operator:
-    // var x = (boolean expression) ? value : other value
-    // sprite.spriteState = sprite.lastDirection === "left" ? "ninjaLtIdle" : "ninjaRtIdle";
     sprite.index = (sprite.index + 1) % ninjaIdleLeftImg.length;
   }   
 }
