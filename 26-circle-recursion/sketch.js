@@ -11,14 +11,12 @@ function draw() {
 }
 
 function drawCircle(x, radius) {
-  let myGray = map(radius, 50, width/2, 0, 255);
-  fill(myGray);
+  let theGray = map(radius, 50, width/2, 0, 255);
+  fill(theGray);
   ellipse(x, height/2, radius*2, radius*2);
 
   if (radius > 50) {
     drawCircle(x-radius/2, radius/2);
     drawCircle(x+radius/2, radius/2);
   }
-
 }
-
